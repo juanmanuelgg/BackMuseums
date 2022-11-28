@@ -21,6 +21,9 @@ import { SponsorEntity } from './sponsor/sponsor.entity';
 import { ImageEntity } from './image/image.entity';
 import { ArtistArtworkModule } from './artist-artwork/artist-artwork.module';
 import { ArtworkImageModule } from './artwork-image/artwork-image.module';
+import { ConfigModule } from '@nestjs/config';
+ConfigModule.forRoot()
+
 
 @Module({
   imports: [
@@ -39,7 +42,7 @@ import { ArtworkImageModule } from './artwork-image/artwork-image.module';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DATABASE_URL && process.env.DATABASE_URL.replace('postgres://', '').split(':')[1].split('@')[1] || process.env.DATABASE_URL || process.env.DB_HOST || 'localhost',
-      port: 5432,
+      port: Number(process.env.DB_PORT || 5432),
       username:
         (process.env.DATABASE_URL &&
           process.env.DATABASE_URL.replace('postgres://', '').split(':')[0]) ||
@@ -65,11 +68,11 @@ import { ArtworkImageModule } from './artwork-image/artwork-image.module';
       /*cli: {
         migrationsDir: "src/shared/migrations"
       },*/
-      extra: {
+      /* extra: {
         ssl: {
           rejectUnauthorized: false
         }
-      }
+      }*/
     }),
     ArtworkImageModule,
   ],

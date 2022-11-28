@@ -1,0 +1,15 @@
+services:
+  pg-database:
+    build:
+      context: .
+      dockerfile: postgres.dockerfile
+    image: "pg-database"
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
