@@ -2,7 +2,7 @@
   "name": "BackModernArtMuseum MISO",
   "description": "Backend project for MISO - Web",
   "repository": "https://github.com/MISW-4104-Web/BackMuseums",
-  "addons": ["heroku-postgresql:hobby-dev"],
+  "addons": ["heroku-postgresql:mini"],
   "env": {
     "USE_NPM_INSTALL": {
       "description": "Use NPM install",
